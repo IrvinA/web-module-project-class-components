@@ -1,6 +1,9 @@
 import React from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
+import styled from 'styled-components';
+
+
 
 const todo = [
   {
@@ -24,14 +27,14 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todo: todo
+      todo:todo
     }
   }
   
   handleToggle = (id) => {
     this.setState({
       ...this.state,
-      groceries: this.state.todo.map(item => {
+      todo: this.state.todo.map(item => {
         if (item.id === id) {
           return ({
             ...item,
