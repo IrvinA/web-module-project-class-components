@@ -44,7 +44,7 @@ class App extends React.Component {
     });
   }
 
-  handleAddItem = (task) => {
+  handleAddTask = (task) => {
     const newTask = {
       task: task,
       id: Date.now(),
@@ -72,7 +72,7 @@ class App extends React.Component {
           <h1>Here is Your ToDo List!</h1>
           <TodoList handleToggle={this.handleToggle} todo={this.state.todo} handleClear={this.handleClear}/>
         </div>
-        <TodoForm handleAddItem={this.handleAddItem}/>
+        <TodoForm handleAddTask={this.handleAddTask}/>
       </div>
     );
   }
