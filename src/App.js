@@ -1,8 +1,6 @@
 import React from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
-import styled from 'styled-components';
-
 
 
 const todo = [
@@ -70,13 +68,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
+      <section className='app-container'>
+        <div className='app-header'>
           <h1>Here is Your ToDo List!</h1>
           <TodoList handleToggle={this.handleToggle} todo={this.state.todo} handleClear={this.handleClear}/>
         </div>
         <TodoForm handleAddTask={this.handleAddTask}/>
-      </div>
+      </section>
     );
   }
 }
