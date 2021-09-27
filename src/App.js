@@ -2,7 +2,19 @@ import React from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 
-const todo = []
+const todo = [
+  {
+    task: 'Organize Garage',
+    id: 1528817077286,
+    completed: false
+  },
+  {
+    task: 'Bake Cookies',
+    id: 1528817084358,
+    completed: false
+  }
+];
+
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -15,16 +27,52 @@ class App extends React.Component {
       todo: todo
     }
   }
+  
+  handleToggle = (id) => {
+    this.setState({
+      ...this.state,
+      groceries: this.state.todo.map(item => {
+        if (item.id === id) {
+          return ({
+            ...item,
+            completed: !item.completed
+          });
+        } else {
+          return item;
+        }
+      })
+    });
+  }
 
+  handleAddItem = (task) => {
+    const newTask = {
+      task: task,
+      id: Date.now(),
+      completed: false
+    };
+    this.setState({
+      ...this.state,
+      todo: [...this.state.todo, newTask]
+    });
+  }
+
+  handleClear = () => {
+    this.setState({
+      ...this.state,
+      todo: this.state.todo.filter(item => {
+        return(!item.completed);
+      })
+    })
+  }
 
   render() {
     return (
       <div>
         <div>
           <h1>Here is Your ToDo List!</h1>
-          <TodoList />
+          <TodoList handleToggle={this.handleToggle} todo={this.state.todo} handleClear={this.handleClear}/>
         </div>
-        <TodoForm />
+        <TodoForm handleAddItem={this.handleAddItem}/>
       </div>
     );
   }
